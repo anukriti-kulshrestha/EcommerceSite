@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block content%}
+<center>
+
+    <h2>Welcome to Shopping site,
+        {% if user.is_authenticated %}
+            {{user.first_name}}!
+        {% else %}
+            visitor!
+        {%endif%}</h2>
+</center>
+<strong>Total users registered :</strong> {{count}}
+{% endblock %}
