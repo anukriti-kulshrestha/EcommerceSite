@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%block content%}
+<h5><a href="{%url 'product' %}">Back</a></h5>
+
+{%if prod %}
+<center>
+<ul>
+    <form method="POST" action="{% url 'addtocart'  %}">
+        {% csrf_token %}
+        <img src="{{prod.image.url}}"><br>
+        <p>
+            <h2>{{prod.name}} </h2><br>
+            ${{prod.price}}<br>
+            <b>Category:</b>{{prod.get_category_display}}<br>
+            <b>Description:</b><br>{{prod.description}}
+            {% if prod.stock > 0 %}
+                <p style="color:green">Available</p>
+            {%else%}
+                <p style="color:red">Out of Stock</p>
+            {%endif %}
+            <input type="hidden" name="prod_id" value="{{prod.id}}">
+            <input type="hidden" name="prod_name" value="{{prod.name}}">
+            <input type="hidden" name="prod_price" value="{{prod.price}}">
+            Quantity:<input type="number" name="quantity" value="1"><br>
+            {% if prod.stock > 0 %}
+                <button type="submit">Add To Cart</button>
+            {%else%}
+                <button type="submit" disabled>Add To Cart</button>
+            {%endif%}
+    </p>
+    </form>
+    </ul>
+    </center>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%block content%}
+<h5 ><a href="{%url 'product' %}">Back</a></h5>
+        <form method="POST">
+            {%if messages %}
+                {% for  message in messages %}
+                    <h3 style="color:red">{{message}}</h3>
+                {% endfor %}
+            {% else%}
+                <h3>{{prod_name}}</h3>
+                    <p>
+                        <strong>Quantity:</strong>{{quantity}}</strong><br>
+                        <strong>Price:</strong>${{amount}}
+                    </p>
+                    <button type="submit">Proceed to Checkout</button>
+            {% endif %}
+        </form>
+{% endblock %}
